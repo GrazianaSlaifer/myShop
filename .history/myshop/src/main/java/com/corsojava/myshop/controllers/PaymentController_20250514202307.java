@@ -1,0 +1,35 @@
+package com.corsojava.myshop.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.corsojava.myshop.models.Order;
+import com.corsojava.myshop.models.Payment;
+import com.corsojava.myshop.repositories.PaymentRepository;
+
+@RestController
+public class PaymentController {
+
+    @Autowired
+    PaymentRepository paymentRepository;
+
+       @GetMapping("/payments") // gestire richieste GET
+        public List<Payment> getOrders() {
+
+                List<Order> orders = orderRepository.findAll();
+                return orders;
+        }
+
+        @PostMapping("/payments") // gestire richieste POST
+        public Order savOrder(@RequestBody Order order) {
+                return orderRepository.save(order);
+
+        }
+
+
+}
